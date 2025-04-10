@@ -1,88 +1,135 @@
 # TalentScout Hiring Assistant
 
-## Project Overview
-TalentScout is an AI-powered hiring assistant designed to streamline the candidate screening process. It gathers essential candidate details and then uses a large language model (LLM) to generate tailored technical interview questions based on the candidate's declared tech stack. Built with Python and Streamlit, this application demonstrates the effective use of prompt engineering, session-based routing, and custom UI navigation to create a user-friendly recruitment tool.
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-## Installation Instructions
+##  Project Overview
 
-1.  Clone the Repository
-    ```bash
-    git clone https://github.com/Sashank-Sagar/TalentScout-Chatbot.git
-    cd TalentScout-Chatbot
-    
-2.  Create a Virtual Environment
-    ```bash
-    python -m venv env
+TalentScout is an AI-powered hiring assistant designed to streamline the candidate screening process. It gathers essential candidate details and uses a large language model (LLM) to generate tailored technical interview questions based on the candidate's declared tech stack.
 
-4.  Activate the Virtual Environment 
-    On Windows:
-        ```bash
-          env\Scripts\activate
-    On Powershell:
-        ```bash
-          env\Scripts\Activate.ps1
-    On macOS/Linux:
-    ```bash
-      source env/bin/activate
+Built with Python and Streamlit, this application demonstrates the effective use of:
+- Prompt engineering
+- Session-based routing
+- Custom UI navigation
 
-6.  Install Dependencies
-    ```bash
-    pip install -r requirements.txt
+---
 
-8.  Run the Application
-    ```bash
-    streamlit run app.py
+##  Installation Instructions
 
-## Usage Guide
-1.  Navigation
-    Use the custom sidebar navigation to move between pages:
-    Home: Overview and instructions
-    Candidate Form: Enter candidate details (name, email, phone, experience, position, location, tech stack)
-    Interview Questions: View and download tailored technical questions
+### 1. Clone the Repository
+```bash
+git clone https://github.com/Sashank-Sagar/TalentScout-Chatbot.git
+cd TalentScout-Chatbot
+```
 
-2.  Candidate Form
-    Complete all required fields. After submission, data is stored in session state.
+### 2. Create a Virtual Environment
+```bash
+python -m venv env
+```
 
-3.  Interview Questions
-    Questions are generated for each technology in the candidate’s stack. Users can review and download them as a text file.
+### 3. Activate the Virtual Environment
+**On Windows:**
+```bash
+env\Scripts\activate
+```
+**On PowerShell:**
+```bash
+env\Scripts\Activate.ps1
+```
+**On macOS/Linux:**
+```bash
+source env/bin/activate
+```
 
-## Technical Details
+### 4. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-1.  Architecture & Code Structure
-    app.py: Entry point with session-based page routing using st.session_state
-    helper_functions.py: Contains render_sidebar() for custom sidebar UI
-    views/: Folder with individual pages
-    candidate_form.py: Captures candidate data
-    interview_ques.py: Generates and displays questions
-    CB_logic.py: Calls LLM API to generate questions based on the tech stack
-    prompts.py: Stores prompt templates for both data collection and question generation
+### 5. Run the Application
+```bash
+streamlit run app.py
+```
 
-2.  Design Decisions
-    Session-based Routing: Uses st.session_state for smooth page transitions instead of default Streamlit multipage setup
-    Input Validation: Ensures valid email, phone number, and completeness of form
-    Prompt Design: Prompts guide the LLM to produce questions that are:
-      Relevant to the candidate’s skills
-      Diverse in difficulty
-      Clearly worded and concise
+---
 
-3.  Prompt Design Explanation
-    Candidate Info Prompt
-    Extracts unambiguous candidate details
+##  Usage Guide
 
-4.  Technical Question Prompt
-    Generate 5 questions per technology
-    Questions span difficulty levels and are easy to interpret
+### 🔹 Navigation
+Use the custom sidebar navigation to switch between:
+- **Home**: Project overview and instructions
+- **Candidate Form**: Enter candidate details (name, email, phone, experience, position, location, tech stack)
+- **Interview Questions**: Generate and download tailored questions
 
-5.  Challenges & Solutions
-    API Rate Limits: Solved with error handling and question caching in st.session_state
-    Navigation Bugs: Fixed using st.rerun() and session logic
-    UI Enhancements: Implemented clean sidebar navigation and styled UI using embedded HTML/CSS
-    Input Validation: Added robust checks for form inputs
+### 🔹 Candidate Form
+Fill in all required fields. Submitted data is stored in Streamlit's session state for use across pages.
 
-6. Data Privacy and Simulated Data
-   Simulated Data: All candidate data is anonymized for demo purposes
-   Data Privacy: No data is permanently stored or transmitted, aligning with GDPR-friendly design
+### 🔹 Interview Questions
+The app uses LLM prompts to generate multiple technical questions per selected technology. These are displayed on-screen and can be downloaded.
 
-## Author
+---
 
-[Sashank Sagar](https://github.com/Sashank-Sagar)
+##  Technical Details
+
+###  Architecture & Code Structure
+```
+TalentScout-Chatbot/
+├── app.py                  # Main script with page routing
+├── helper_functions.py     # Custom sidebar rendering logic
+├── CB_logic.py             # Core chatbot logic for question generation
+├── prompts.py              # Prompt templates
+├── views/                  # Page components
+│   ├── candidate_form.py   # Candidate form input page
+│   └── interview_ques.py   # Technical questions output page
+├── requirements.txt        # Project dependencies
+└── README.md               # Project documentation
+```
+
+###  Design Highlights
+- **Session-based Routing**: Replaces Streamlit's default multipage layout with dynamic control using `st.session_state`
+- **Custom Sidebar**: Vertical navigation buttons with `st.rerun()` logic
+- **Prompt Engineering**:
+  - **Candidate Info Prompt**: Extracts relevant, clean information
+  - **Tech Stack Prompt**: Asks for 5 well-formed, difficulty-balanced questions per tech
+- **Input Validation**: Ensures valid and complete inputs (email, phone, etc.)
+
+###  Prompt Strategy
+- Clearly instructs the LLM for concise, skill-relevant questions
+- Balanced difficulty to simulate real interviews
+- One prompt per tech stack element, dynamically iterated
+
+---
+
+##  Challenges & Solutions
+
+| Challenge                | Solution                                                                 |
+|--------------------------|--------------------------------------------------------------------------|
+| API Rate Limits          | Added caching using `st.session_state` and simple error handling         |
+| Navigation Jumps         | Resolved using button states and `st.rerun()` logic                      |
+| UI Consistency           | Custom sidebar and minimal layout for clean UX                          |
+| Data Consistency         | Used session memory to keep candidate data across pages                  |
+
+---
+
+##  Data Privacy
+- **Simulated Data**: Candidate data is anonymized in the demo
+- **No Storage**: No backend database or persistent logging
+- **GDPR-Friendly**: Designed for privacy-first use
+
+---
+
+##  Author
+- **Sashank Sagar**
+  - [GitHub](https://github.com/Sashank-Sagar)
+  - [LinkedIn](https://linkedin.com/in/sashank-sagar)
+
+---
+
+##  License
+This project is licensed under the **MIT License**.  
+See the [LICENSE](LICENSE) file for full license details.
+
+---
+
+##  Contributions
+If you'd like to contribute, feel free to fork the repo and open a pull request.  
+Suggestions, issues, or feature ideas are welcome in the [Issues](https://github.com/Sashank-Sagar/TalentScout-Chatbot/issues) tab!
