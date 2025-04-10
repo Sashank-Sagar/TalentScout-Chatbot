@@ -1,0 +1,9 @@
+# Exclude virtual environment directories
+env/
+
+# Exclude environment variables file
+.env
+
+# Exclude Python bytecode files
+__pycache__/
+*.pyc
