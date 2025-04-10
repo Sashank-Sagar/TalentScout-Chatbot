@@ -11,20 +11,26 @@ TalentScout is an AI-powered hiring assistant designed to streamline the candida
     cd TalentScout-Chatbot
     
 2.  Create a Virtual Environment
+    ```bash
     python -m venv env
 
-3.  Activate the Virtual Environment 
+4.  Activate the Virtual Environment 
     On Windows:
-      env\Scripts\activate
+        ```bash
+          env\Scripts\activate
     On Powershell:
-      env\Scripts\Activate.ps1
+        ```bash
+          env\Scripts\Activate.ps1
     On macOS/Linux:
+    ```bash
       source env/bin/activate
 
-4.  Install Dependencies
+6.  Install Dependencies
+    ```bash
     pip install -r requirements.txt
 
-5.  Run the Application
+8.  Run the Application
+    ```bash
     streamlit run app.py
 
 ## Usage Guide
